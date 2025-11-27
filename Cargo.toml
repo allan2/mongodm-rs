@@ -12,7 +12,12 @@ readme = "README.md"
 include = ["src/**/*", "README.md", "CHANGELOG.md"]
 
 [dependencies]
-mongodb = { version = "3.4", default-features = false }
+mongodb = { version = "3.4", default-features = false, features = [
+  "compat-3-3-0",
+  "bson-3",
+  "dns-resolver",
+  "openssl-tls",
+] }
 serde = { version = "1", features = ["derive"] }
 futures-core = "0.3"
 futures-util = "0.3"
