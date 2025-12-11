@@ -2,7 +2,7 @@
 name = "mongodm"
 version = "0.10.0"
 authors = ["Benoît CORTIER <benoit.cortier@fried-world.eu>"]
-edition = "2021"
+edition = "2024"
 description = "A thin ODM layer for mongodb"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Devolutions/mongodm-rs"
@@ -12,12 +12,14 @@ readme = "README.md"
 include = ["src/**/*", "README.md", "CHANGELOG.md"]
 
 [features]
-default = ["compat-3-0-0"]
+default = ["compat-3-0-0", "rustls"]
 compat-3-0-0 = ["mongodb/compat-3-0-0"]
 compat-3-3-0 = ["mongodb/compat-3-3-0", "mongodb/bson-3"]
+openssl = ["mongodb/openssl-tls"]
+rustls = ["mongodb/rustls-tls"]
 
 [dependencies]
-mongodb = { version = "3", default-features = false, features = ["dns-resolver", "rustls-tls"] }
+mongodb = { version = "3", default-features = false, features = [ "dns-resolver" ] }
 serde = { version = "1", features = ["derive"] }
 futures-core = "0.3"
 futures-util = "0.3"
@@ -26,4 +28,4 @@ async-trait = "0.1"
 [dev-dependencies]
 tokio = "1.14.0"
 pretty_assertions = "1.0.0"
-chrono = { version = "0.4.38", features = [ "serde" ] }
+chrono = { version = "0.4.38", features = ["serde"] }
